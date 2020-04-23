@@ -608,11 +608,11 @@ var relatedHover = false;
 $('.related-event').hover(function () {
     relatedHover = true;
     var hoveredClass = $(this).attr('class');
-    $('#ev-'+parseInt(hoveredClass.replace('related-event rel-', ''))).addClass('active');
+    $('#ev-' + parseInt(hoveredClass.replace('related-event rel-', ''))).addClass('active');
 }, function () {
     relatedHover = false;
     var hoveredClass = $(this).attr('class');
-    $('#ev-'+parseInt(hoveredClass.replace('related-event rel-', ''))).removeClass('active');
+    $('#ev-' + parseInt(hoveredClass.replace('related-event rel-', ''))).removeClass('active');
 });
 
 // when user clicks related event
@@ -644,6 +644,43 @@ downArrow.onclick = function () {
         changeEvent();
     }
 }
+
+// autoplay
+
+function autoplay(dir) {
+    var autoplaybkwd;
+    var autoplayfwd;
+    var status;
+    if (dir == 'backwards') {
+        autoplaybkwd = setInterval(function() {
+            if (beforeNext == false && active > 0) {
+                beforeNext = true;
+                active = active - 1;
+                changeEvent();
+            }
+        }, 2800);
+        status = 'playing backwards';
+        return status;
+    }
+
+    else if (dir == 'stop') {
+        clearInterval(autoplayfwd);
+        clearInterval(autoplaybkwd);
+    }
+
+    else {
+        autoplayfwd = setInterval(function () {
+            if (beforeNext == false && active < 31) {
+                beforeNext = true;
+                active = active + 1;
+                changeEvent();
+            }
+        }, 2800);
+        status = 'playing forwards';
+        return status;
+    }
+}
+
 
 // when user hovers over chapters (some done with CSS :hover)
 // if time should shorten using event.target and .length
