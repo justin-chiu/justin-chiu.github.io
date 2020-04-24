@@ -646,13 +646,12 @@ downArrow.onclick = function () {
 }
 
 // autoplay
-
 function autoplay(dir) {
     var autoplaybkwd;
     var autoplayfwd;
     var status;
     if (dir == 'backwards') {
-        autoplaybkwd = setInterval(function() {
+        autoplaybkwd = setInterval(function () {
             if (beforeNext == false && active > 0) {
                 beforeNext = true;
                 active = active - 1;
@@ -661,11 +660,6 @@ function autoplay(dir) {
         }, 2800);
         status = 'playing backwards';
         return status;
-    }
-
-    else if (dir == 'stop') {
-        clearInterval(autoplayfwd);
-        clearInterval(autoplaybkwd);
     }
 
     else {
@@ -679,6 +673,27 @@ function autoplay(dir) {
         status = 'playing forwards';
         return status;
     }
+}
+
+// demo
+function demo() {
+    var demoEvents = [12, 11, 20, 21, 12];
+    var demoDelay = 2800;
+    var demoNum = 0;
+    console.log('demo started');
+
+    var demoInterval = setInterval(function(){
+        if (demoNum < demoEvents.length) {
+            active = demoEvents[demoNum];
+            changeEvent();
+            demoNum++;
+        }
+        else {
+            clearInterval(demoInterval);
+            console.log('demo ended');
+        }
+    },2800);
+
 }
 
 
