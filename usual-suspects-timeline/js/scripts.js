@@ -677,6 +677,7 @@ function autoplay(dir) {
 
 // demo
 function demo() {
+
     var demoEvents = [12, 11, 20, 21, 12];
     var demoDelay = 2800;
     var demoNum = 0;
@@ -694,6 +695,25 @@ function demo() {
         }
     },2800);
 
+}
+
+function demo2() {
+    var demoEvents = [6, 7, 8, 2, 6];
+    var demoDelay = 2800;
+    var demoNum = 0;
+    console.log('demo started');
+
+    var demoInterval = setInterval(function(){
+        if (demoNum < demoEvents.length) {
+            active = demoEvents[demoNum];
+            changeEvent();
+            demoNum++;
+        }
+        else {
+            clearInterval(demoInterval);
+            console.log('demo ended');
+        }
+    },2800);
 }
 
 
